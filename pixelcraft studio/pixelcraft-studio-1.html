@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PixelCraft Studio | Simple. Clean. Effective Design.</title>
+
+		<style>
+			/* ============================================================
+     EDITABLE SETTINGS
+     Change colors, fonts, and spacing here to update the whole site
+     ============================================================ */
+			:root {
+				--bg-light: #ffffff; /* main white background */
+				--bg-alt: #f5f5f7; /* light gray section background */
+				--bg-blue: #eaf4fc; /* light blue section background */
+				--bg-dark: #000000; /* dark section background */
+				--text-main: #1d1d1f; /* primary text color (on light bg) */
+				--text-secondary: #6e6e73; /* secondary / muted text (on light bg) */
+				--text-light: #f5f5f7; /* primary text color (on dark bg) */
+				--text-light-secondary: #a1a1a6; /* secondary text (on dark bg) */
+				--accent: #0071e3; /* button & link accent color */
+				--accent-hover: #0077ed; /* accent hover color */
+				--border-color: #d2d2d7; /* subtle border color (light bg) */
+				--border-dark: #424245; /* subtle border color (dark bg) */
+				--max-width: 1100px; /* page content max width */
+				--font:
+					-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+					Arial, sans-serif;
+			}
+
+			/* ============================================================
+     RESET & BASE STYLES
+     ============================================================ */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth; /* smooth scroll for nav links - remove if not wanted */
+			}
+
+			body {
+				font-family: var(--font);
+				color: var(--text-main);
+				background-color: var(--bg-light);
+				line-height: 1.6;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.container {
+				max-width: var(--max-width);
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-weight: 600;
+				letter-spacing: -0.02em;
+			}
+			
+			.pt-4{
+				margin-top: 3em;
+			}
+			/* ============================================================
+     NAVIGATION BAR
+     Edit links/labels in the HTML below
+     ============================================================ */
+			.navbar {
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				background-color: rgba(255, 255, 255, 0.8);
+				backdrop-filter: blur(12px);
+				-webkit-backdrop-filter: blur(12px);
+				border-bottom: 1px solid var(--border-color);
+			}
+
+			.nav-inner {
+				max-width: var(--max-width);
+				margin: 0 auto;
+				padding: 0 24px;
+				height: 56px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.nav-logo {
+				font-size: 17px;
+				font-weight: 600;
+				text-decoration: none;
+				color: var(--text-main);
+			}
+
+			.nav-links {
+				list-style: none;
+				display: flex;
+				gap: 28px;
+			}
+
+			.nav-links a {
+				color: var(--text-main);
+				text-decoration: none;
+				font-size: 14px;
+			}
+
+			.nav-links a:hover {
+				color: var(--text-secondary);
+			}
+
+			/* ============================================================
+     BUTTONS
+     ============================================================ */
+			.btn {
+				display: inline-block;
+				padding: 14px 32px;
+				border-radius: 980px;
+				font-size: 16px;
+				font-weight: 500;
+				text-decoration: none;
+				transition: background-color 0.2s ease;
+			}
+
+			.btn-primary {
+				background-color: var(--accent);
+				color: #ffffff;
+			}
+
+			.btn-primary:hover {
+				background-color: var(--accent-hover);
+			}
+
+			/* ============================================================
+     LARGE FEATURE SECTIONS
+     (full-width blocks: heading, short text, button, big visual)
+     Used for the hero, each service, and the closing call to action
+     ============================================================ */
+			.feature {
+				padding: 90px 24px;
+				text-align: center;
+			}
+
+			/* Background color variants - apply one of these alongside .feature */
+			.feature-white {
+				background-color: var(--bg-light);
+			}
+			.feature-gray {
+				background-color: var(--bg-alt);
+			}
+			.feature-blue {
+				background-color: var(--bg-blue);
+			}
+			.feature-dark {
+				background-color: var(--bg-dark);
+				color: var(--text-light);
+			}
+
+			.feature-content {
+				max-width: 680px;
+				margin: 0 auto 40px;
+			}
+
+			/* Heading used for each individual feature/service (large) */
+			.feature-title {
+				font-size: 48px;
+				margin-bottom: 10px;
+			}
+
+			/* Paragraph text under a feature title */
+			.feature-description {
+				font-size: 21px;
+				color: var(--text-secondary);
+				max-width: 600px;
+				margin: 0 auto 32px;
+			}
+
+			.feature-dark .feature-description {
+				color: var(--text-light-secondary);
+			}
+
+			/* Large visual area below the text in a feature block */
+			.feature-visual {
+				max-width: 880px;
+				margin: 40px auto 0;
+			}
+
+			/* Placeholder box standing in for a real photo/screenshot.
+     Replace with: <img src="your-image.jpg" alt="..."
+     style="width:100%; height:100%; object-fit:cover; border-radius:18px;"> */
+			.visual-placeholder {
+				aspect-ratio: 16 / 10;
+				border-radius: 18px;
+				border: 1px dashed var(--border-color);
+				background-color: var(--bg-alt);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				font-size: 16px;
+				color: var(--text-secondary);
+				text-align: center;
+				padding: 24px;
+			}
+
+			.feature-gray .visual-placeholder,
+			.feature-blue .visual-placeholder {
+				background-color: #ffffff;
+			}
+
+			.feature-dark .visual-placeholder {
+				background-color: #1d1d1f;
+				border-color: var(--border-dark);
+				color: var(--text-light-secondary);
+			}
+
+			/* ============================================================
+     HERO SECTION (extends .feature)
+     ============================================================ */
+			.hero {
+				padding-top: 130px;
+			}
+
+			.hero h1 {
+				font-size: 64px;
+				margin-bottom: 8px;
+			}
+
+			.hero-tagline {
+				font-size: 28px;
+				font-weight: 500;
+				color: var(--text-secondary);
+				margin-bottom: 20px;
+			}
+
+			/* ============================================================
+     SHARED SECTION HEADINGS
+     Used for: About, "What We Do", "Our Work", "Get in Touch"
+     ============================================================ */
+			.section-title {
+				font-size: 40px;
+				text-align: center;
+				margin-bottom: 16px;
+			}
+
+			.section-subtitle {
+				font-size: 18px;
+				color: var(--text-secondary);
+				text-align: center;
+				max-width: 620px;
+				margin: 0 auto 60px;
+			}
+
+			/* ============================================================
+     ABOUT SECTION
+     ============================================================ */
+			.about {
+				padding: 90px 0;
+				background-color: var(--bg-light);
+			}
+
+			.about p {
+				font-size: 19px;
+				color: var(--text-secondary);
+				max-width: 700px;
+				margin: 0 auto;
+				text-align: center;
+			}
+
+			/* ============================================================
+     SERVICES INTRO
+     Small heading block above the first service feature
+     ============================================================ */
+			.section-intro {
+				text-align: center;
+				margin-bottom: 60px;
+			}
+
+			.section-intro .section-subtitle {
+				margin-bottom: 0;
+			}
+
+			/* ============================================================
+     PORTFOLIO SECTION
+     ============================================================ */
+			.portfolio {
+				padding: 90px 0;
+				background-color: var(--bg-light);
+			}
+
+			.portfolio-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 20px;
+			}
+
+			.portfolio-item {
+				aspect-ratio: 4 / 3;
+				border-radius: 14px;
+				border: 1px solid var(--border-color);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 16px;
+				font-weight: 500;
+				color: var(--text-secondary);
+			}
+
+			/* Placeholder color cycle for portfolio boxes.
+     When you have real images, replace the box content with:
+     <img src="your-image.jpg" alt="Project name"
+          style="width:100%; height:100%; object-fit:cover; border-radius:14px;"> */
+			.portfolio-item:nth-child(6n + 1) {
+				background-color: #e8f0fe;
+			}
+			.portfolio-item:nth-child(6n + 2) {
+				background-color: #fdf2e9;
+			}
+			.portfolio-item:nth-child(6n + 3) {
+				background-color: #eafaf1;
+			}
+			.portfolio-item:nth-child(6n + 4) {
+				background-color: #f0e8fd;
+			}
+			.portfolio-item:nth-child(6n + 5) {
+				background-color: #fef9e7;
+			}
+			.portfolio-item:nth-child(6n + 6) {
+				background-color: #fde8ec;
+			}
+
+			/* ============================================================
+     CONTACT DETAILS SECTION
+     (sits below the dark "Let's Create Something Great" block)
+     ============================================================ */
+			.contact-details {
+				padding: 90px 0;
+				background-color: var(--bg-alt);
+			}
+
+			.contact-grid {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 48px;
+				justify-content: space-between;
+			}
+
+			.contact-block {
+				flex: 1;
+				min-width: 240px;
+			}
+
+			.contact-block h3 {
+				font-size: 14px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--text-secondary);
+				margin-bottom: 16px;
+			}
+
+			.contact-block a {
+				color: var(--text-main);
+				text-decoration: none;
+				font-size: 17px;
+				display: block;
+				margin-bottom: 12px;
+			}
+
+			.contact-block a:hover {
+				color: var(--accent);
+			}
+
+			/* ============================================================
+     FOOTER
+     ============================================================ */
+			footer {
+				border-top: 1px solid var(--border-color);
+				padding: 32px 0;
+				text-align: center;
+				font-size: 13px;
+				color: var(--text-secondary);
+				background-color: var(--bg-light);
+			}
+
+			/* ============================================================
+     RESPONSIVE / MOBILE STYLES
+     ============================================================ */
+			@media (max-width: 700px) {
+				.feature,
+				.about,
+				.portfolio,
+				.contact-details {
+					padding: 60px 0;
+				}
+
+				.feature {
+					padding-left: 20px;
+					padding-right: 20px;
+				}
+
+				.nav-inner {
+					flex-direction: column;
+					align-items: center;
+					height: auto;
+					padding: 14px 24px;
+					gap: 10px;
+				}
+
+				.nav-links {
+					gap: 18px;
+					flex-wrap: wrap;
+					justify-content: center;
+				}
+
+				.hero {
+					padding-top: 70px;
+				}
+
+				.hero h1 {
+					font-size: 38px;
+				}
+
+				.hero-tagline {
+					font-size: 20px;
+				}
+
+				.feature-title {
+					font-size: 32px;
+				}
+
+				.feature-description {
+					font-size: 17px;
+				}
+
+				.section-title {
+					font-size: 30px;
+				}
+
+				.visual-placeholder {
+					font-size: 14px;
+				}
+
+				.contact-grid {
+					gap: 32px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ================================================================
+     NAVIGATION BAR
+     Edit the studio name or links below if needed
+     ================================================================ -->
+		<nav class="navbar">
+			<div class="nav-inner">
+				<a href="#" class="nav-logo">PixelCraft Studio</a>
+				<ul class="nav-links">
+					<li><a href="#about">About</a></li>
+					<li><a href="#services">Services</a></li>
+					<li><a href="#portfolio">Portfolio</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- ================================================================
+     1. HERO SECTION
+     Edit studio name, tagline, subtitle, and button below
+     ================================================================ -->
+		<section class="feature feature-gray hero">
+			<div class="feature-content">
+				<h1>PixelCraft Studio</h1>
+				<p class="hero-tagline">Simple. Clean. Effective Design.</p>
+				<p class="feature-description">
+					We create clean and effective graphic designs for businesses,
+					churches, and personal brands.
+				</p>
+			</div>
+			<div class="feature-visual">
+				<!-- Replace this placeholder with a photo of your team or design work 			
+
+		<!-- ================================================================
+     2. ABOUT SECTION
+     Edit the paragraph text below
+     ================================================================ -->
+		<section class="about" id="about">
+			<div class="container">
+				<h2 class="section-title">About Us</h2>
+				<p>
+					We are a small creative team focused on producing simple and effective
+					graphic designs. We work collaboratively to deliver quality visual
+					content for clients.
+				</p>
+			</div>
+		</section>
+
+		<!-- ================================================================
+     3. SERVICES SECTION
+     Each service is its own large feature block below.
+     To add a service, copy one of the .feature blocks and edit it.
+     To remove one, delete its whole <section class="feature ..."> block.
+
+     The "Learn More" buttons link to #contact by default.
+     To send a pre-filled WhatsApp message instead, use:
+       https://wa.me/YOUR_NUMBER?text=Hi%2C%20I%27m%20interested%20in%20Flyer%20Design
+     ================================================================ -->
+
+		<!-- Service 1: Flyer Design -->
+		<section class="feature feature-white" id="services">
+			<div class="section-intro">
+				<h2 class="section-title">What We Do</h2>
+				<p class="section-subtitle">
+					A focused set of design services to help your brand look its best.
+				</p>
+			</div>
+
+			<div class="feature-content">
+				<h2 class="feature-title">Flyer Design</h2>
+				<p class="feature-description">
+					From product promos to event announcements, we design flyers that grab
+					attention and get your message across clearly.
+				</p>
+				
+			</div>
+			<div class="feature-visual">
+					<div class="visual-placeholder">
+					<img
+							src="/pixelcraft studio/assets/flyer.jpg"
+							alt="business flyer"
+							style="
+								width: 100%;
+								/* height: 100% */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+				</div>
+							<a href="#contact" class="pt-4 btn btn-primary">Learn More</a>
+			</div>
+		</section>
+
+		<!-- Service 2: Business Posters -->
+		<section class="feature feature-blue">
+			<div class="feature-content">
+				<h2 class="feature-title">Business Posters</h2>
+				<p class="feature-description">
+					Bold, professional posters for promotions, launches, and announcements
+					that help your business stand out.
+				</p>
+			</div>
+			<div class="feature-visual">
+				<!-- <p>Business Poster — sample visual</p> -->
+				<div class="visual-placeholder">
+					<img
+							src="/pixelcraft studio/assets/nm.jpg"
+							alt="business flyer"
+							style="
+								width: 100%;
+								/* height: 100% */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+						/>
+			      </div>
+			      <a href="#contact" class="pt-4 btn btn-primary">Learn More</a>
+				    </div>
+			</div>
+		</section>=
+
+		<!-- Service 3: Social Media Graphics -->
+		<section class="feature feature-dark">
+			<div class="feature-content">
+				<h2 class="feature-title">Social Media Graphics</h2>
+				<p class="feature-description">
+					Consistent, scroll-stopping visuals for Instagram, Facebook, and other
+					platforms — designed to match your brand.
+				</p>
+				
+			</div>
+			<div class="feature-visual">
+			
+					<img
+							src="/pixelcraft studio/assets/newcollection.jpg"
+							alt="Project 1"
+							style="
+								width: 100%;
+								/* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+							/>
+				</div>
+						<a href="#contact" class="pt-4 btn btn-primary">Learn More</a>
+			</div>
+		</section>
+
+		<!-- Service 4: Logo Design -->
+		<section class="feature feature-gray">
+			<div class="feature-content">
+				<h2 class="feature-title">Logo Design</h2>
+				<p class="feature-description">
+					Simple, memorable logos that capture your brand's identity and work
+					everywhere — from business cards to billboards.
+				</p>
+				
+			</div>
+			<div class="feature-visual">
+				
+				<img
+							src="/pixelcraft studio/assets/logo.jpg"
+							alt="business flyer"
+							style="
+								width: 100%;
+								/* height: 100% */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+				</div>
+						 <a href="#contact" class="pt-4 btn btn-primary">Learn More</a>
+			</div>
+		</section>
+
+		<!-- ================================================================
+     4. PORTFOLIO SECTION
+     These are placeholder boxes for sample work.
+
+     To replace a box with a real image, swap:
+       <div class="portfolio-item">Project 1</div>
+     with:
+       <div class="portfolio-item">
+         <img src="your-image.jpg" alt="Project 1"
+              style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
+       </div>
+
+     To add/remove projects, copy or delete a <div class="portfolio-item">...</div> line.
+     ================================================================ -->
+		<section class="portfolio" id="portfolio">
+			<div class="container">
+				<h2 class="section-title">Our Work</h2>
+				<p class="section-subtitle">A few sample projects below.</p>
+
+				<div class="portfolio-grid">
+					<div class="portfolio-item">
+						<img
+							src="/pixelcraft studio/assets/motivation.jpg"
+							alt="Project 1"
+							style="
+								width: 100%;
+								/* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+						/>
+					</div>
+					<div class="portfolio-item">
+						<img
+							src="/pixelcraft studio/assets/max.jpg"
+							alt="Project 2"
+							style="
+								width: 100%;
+								/* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+						/>
+					</div>
+					<div class="portfolio-item">
+						<img
+							src="/pixelcraft studio/assets/ourpolicy.png"
+							alt="Project 3"
+							style="
+								width: 100%;
+								/* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+						/>
+					</div>
+					<div class="portfolio-item">
+						<img
+							src="/pixelcraft studio/assets/brutalist.jpg"
+							alt="Project 4"
+							style="
+								width: 100%;
+								/* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+								"
+						/>
+					</div>
+					<div class="portfolio-item">
+						<img
+							src="/pixelcraft studio/assets/christian.jpg"""
+							alt="Project 5"
+							style="
+								width: 100%;
+								/* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+						/>
+					</div>
+					<div class="portfolio-item">
+						<img
+							src="/pixelcraft studio/assets/trendingnow.png"
+							alt="Project 6"
+							style="
+								width: 100%;
+								/* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+						/>
+					</div>
+					<div class="portfolio-item">
+						<img
+							src="/pixelcraft studio/assets/denim.jpg"
+							alt="Project 7"
+							style="
+								width: 100%;
+							 /* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+						/>
+					</div>
+					<div class="portfolio-item">
+						<img
+							src="/pixelcraft studio/assets/Brokebrand.png"
+							alt="Project 8"
+							style="
+								width: 100%;
+								/* height: 100%; */
+								object-fit: fit;
+								border-radius: 14px;
+							"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================================================================
+     5. CONTACT SECTION
+     Large closing call-to-action, followed by contact details
+     Replace WhatsApp number, email, and social links below
+     ================================================================ -->
+		<section class="feature feature-dark" id="contact">
+			<div class="feature-content">
+				<h2 class="feature-title">Let's Create Something Great</h2>
+				<p class="feature-description">
+					Have a project in mind? Send us a message and let's get started.
+				</p>
+				<!-- Replace YOUR_NUMBER with your WhatsApp number (include country code, no + or spaces) -->
+				<a href="https://wa.me/2348081786715" class="btn btn-primary"
+					>Message Us on WhatsApp</a
+				>
+			</div>
+		</section>
+
+		<section class="contact-details">
+			<div class="container">
+				<div class="contact-grid">
+					<!-- Direct contact details -->
+					<div class="contact-block">
+						<h3>Contact</h3>
+						<!-- Replace YOUR_NUMBER with your WhatsApp number -->
+						<a href="https://wa.me/2348081786715">WhatsApp</a>
+						<!-- Replace YOUR_EMAIL_HERE with your email address -->
+						<a href="mailto: "pixelcraftstudiohq@gmail.com">pixelcraftstudiohq@gmail.com</a>
+					</div>
+
+					
+						
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================================================================
+     FOOTER
+     Edit the copyright text/year below
+     ================================================================ -->
+		<footer>
+			<p>&copy; 2026 PixelCraft Studio. All rights reserved.</p>
+		</footer>
+	</body>
+</html>
